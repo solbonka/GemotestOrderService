@@ -4,7 +4,7 @@ namespace App\Service\Gemotest\Type;
 
 use DateTimeInterface;
 
-class Patient
+class Patient implements Arrayable
 {
     /**
      * @var string
@@ -54,7 +54,7 @@ class Patient
     /**
      * @var string
      */
-    private string $international_passport_number;
+    private string $internationalPassportNumber;
 
     /**
      * @var string
@@ -215,15 +215,15 @@ class Patient
      */
     public function getInternationalPassportNumber(): string
     {
-        return $this->international_passport_number;
+        return $this->internationalPassportNumber;
     }
 
     /**
-     * @param string $international_passport_number
+     * @param string $internationalPassportNumber
      */
-    public function setInternationalPassportNumber(string $international_passport_number): void
+    public function setInternationalPassportNumber(string $internationalPassportNumber): void
     {
-        $this->international_passport_number = $international_passport_number;
+        $this->internationalPassportNumber = $internationalPassportNumber;
     }
 
     /**

@@ -32,9 +32,6 @@ class OrderController extends AbstractController
     #[Route('/cancel-order', name: 'app_cancel-order')]
     public function testCancel(Request $request){
         $params = json_decode($request->getContent());
-            //
-            //
-
         $salt = 'b4f6d7d2fe94123c03c86412a0b649494017463f';
         $hash = sha1("$params->ext_num$params->order_num$params->contractor$salt");
         $order = new Order($params->ext_num, $params->order_num, $params->contractor, $hash);
@@ -43,6 +40,7 @@ class OrderController extends AbstractController
         return new Response(json_encode($response->toArray()));
     }
     #[Route('/create-order', name: 'app_create-order')]
+    #[Route('/update-order', name: 'app_update-order')]
     public function create(Request $request): Response
     {
         $params = json_decode($request->getContent());
@@ -93,7 +91,9 @@ class OrderController extends AbstractController
         $salt = 'b4f6d7d2fe94123c03c86412a0b649494017463f';
         $hash = sha1("$params->ext_num$params->order_num$params->contractor{$params->patient->surname}{$params->patient->birthdate}$salt");
         $order = new Order($params->ext_num, $params->order_num, $params->contractor, $hash);
-        $order->addService($params->service);
+        foreach ($params->services as $service){
+            $order->addService($service);
+        }
         $order->setPatient($patient);
         $order->setComment($params->comment);
         $response = $this->client->createOrder($order);

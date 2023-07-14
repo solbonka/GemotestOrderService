@@ -188,7 +188,8 @@ class Order implements RequestInterface
      */
     private string $internationalPassportIssuedBy;
 
-    public function __construct(string $extNum, string $orderNum, string $contractor, string $hash)
+    public function __construct(string $extNum, string $orderNum, string $contractor, string $hash
+    )
     {
         $this->extNum = $extNum;
         $this->orderNum = $orderNum;

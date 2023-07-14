@@ -2,696 +2,788 @@
 
 namespace App\Service\Gemotest\Type;
 
+use DateTimeInterface;
 use Phpro\SoapClient\Type\RequestInterface;
+use stdClass;
 
 class Order implements RequestInterface
 {
     /**
      * @var string
      */
-    private $ext_num;
+    private string $extNum;
 
     /**
      * @var string
      */
-    private $order_num;
+    private string $orderNum;
 
     /**
      * @var string
      */
-    private $doctor;
+    private string $doctor;
 
     /**
      * @var string
      */
-    private $contractor;
+    private string $contractor;
 
     /**
      * @var string
      */
-    private $hash;
+    private string $hash;
 
     /**
      * @var string
      */
-    private $comment;
+    private string $comment;
 
     /**
      * @var bool
      */
-    private $registered;
+    private bool $registered;
 
     /**
-     * @var \DateTimeInterface
+     * @var string
      */
-    private $registration_date;
+    private string $registrationDate;
 
     /**
      * @var int
      */
-    private $order_status;
+    private int $orderStatus;
 
     /**
      * @var int
      */
-    private $result_status;
+    private int $resultStatus;
 
     /**
-     * @var \App\Service\Gemotest\Type\Patient
+     * @var Patient
      */
-    private $patient;
+    private Patient $patient;
 
     /**
-     * @var \App\Service\Gemotest\Type\Representative
+     * @var Representative
      */
-    private $representative;
+    private Representative $representative;
 
     /**
-     * @var \App\Service\Gemotest\Type\Informing
+     * @var Informing
      */
-    private $informing;
+    private Informing $informing;
 
     /**
-     * @var \App\Service\Gemotest\Type\AdditionalInformation
+     * @var AdditionalInformation
      */
-    private $additional_information;
+    private AdditionalInformation $additionalInformation;
 
     /**
-     * @var \App\Service\Gemotest\Type\Services
+     * @var array
      */
-    private $services;
+    private array $services;
 
     /**
-     * @var \App\Service\Gemotest\Type\OrderSample
+     * @var OrderSample
      */
-    private $order_samples;
+    private OrderSample $orderSamples;
 
     /**
-     * @var \App\Service\Gemotest\Type\ServicesSupplementals
+     * @var array
      */
-    private $services_supplementals;
+    private array $servicesSupplementals;
 
     /**
      * @var int
      */
-    private $user_id;
+    private int $userId;
 
     /**
      * @var bool
      */
-    private $read_only;
+    private bool $readOnly;
 
     /**
      * @var bool
      */
-    private $guarantee_letter;
+    private bool $guaranteeLetter;
 
     /**
      * @var bool
      */
-    private $flag_travel_30_days;
+    private bool $flagTravel30Days;
 
     /**
      * @var string
      */
-    private $travel_country;
+    private string $travelCountry;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $return_date;
+    private DateTimeInterface $returnDate;
 
     /**
      * @var bool
      */
-    private $covid_vaccination_flag;
+    private bool $covidVaccinationFlag;
 
     /**
      * @var string
      */
-    private $covid_vaccine_name;
+    private string $covidVaccineName;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $covid_first_vaccination_date;
+    private DateTimeInterface $covidFirstVaccinationDate;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $covid_second_vaccination_date;
+    private DateTimeInterface $covidSecondVaccinationDate;
 
     /**
      * @var bool
      */
-    private $flu_vaccination_flag;
+    private bool $fluVaccinationFlag;
 
     /**
      * @var string
      */
-    private $flu_vaccine_name;
+    private string $fluVaccineName;
 
     /**
-     * @var \DateTimeInterface
+     * @var DateTimeInterface
      */
-    private $flu_vaccination_date;
-
-    /**
-     * @var string
-     */
-    private $country_code;
+    private DateTimeInterface $fluVaccinationDate;
 
     /**
      * @var string
      */
-    private $international_passport_last_name;
+    private string $countryCode;
 
     /**
      * @var string
      */
-    private $international_passport_name;
+    private string $internationalPassportLastName;
 
     /**
      * @var string
      */
-    private $international_passport_number;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $international_passport_issue_date;
+    private string $internationalPassportName;
 
     /**
      * @var string
      */
-    private $international_passport_issued_by;
+    private string $internationalPassportNumber;
 
-    public function __construct($ext_num, $order_num, $doctor, $contractor, $hash, $comment, $registered, $registration_date, $order_status, $result_status, $patient, $representative, $informing, $additional_information, $services, $order_samples, $services_supplementals, $user_id, $read_only, $guarantee_letter, $flag_travel_30_days, $travel_country, $return_date, $covid_vaccination_flag, $covid_vaccine_name, $covid_first_vaccination_date, $covid_second_vaccination_date, $flu_vaccination_flag, $flu_vaccine_name, $flu_vaccination_date, $country_code, $international_passport_last_name, $international_passport_name, $international_passport_number, $international_passport_issue_date, $international_passport_issued_by)
+    /**
+     * @var DateTimeInterface
+     */
+    private DateTimeInterface $internationalPassportIssueDate;
+
+    /**
+     * @var string
+     */
+    private string $internationalPassportIssuedBy;
+
+    public function __construct(string $extNum, string $orderNum, string $contractor, string $hash)
     {
-        $this->ext_num = $ext_num;
-        $this->order_num = $order_num;
-        $this->doctor = $doctor;
+        $this->extNum = $extNum;
+        $this->orderNum = $orderNum;
         $this->contractor = $contractor;
         $this->hash = $hash;
-        $this->comment = $comment;
-        $this->registered = $registered;
-        $this->registration_date = $registration_date;
-        $this->order_status = $order_status;
-        $this->result_status = $result_status;
-        $this->patient = $patient;
-        $this->representative = $representative;
-        $this->informing = $informing;
-        $this->additional_information = $additional_information;
-        $this->services = $services;
-        $this->order_samples = $order_samples;
-        $this->services_supplementals = $services_supplementals;
-        $this->user_id = $user_id;
-        $this->read_only = $read_only;
-        $this->guarantee_letter = $guarantee_letter;
-        $this->flag_travel_30_days = $flag_travel_30_days;
-        $this->travel_country = $travel_country;
-        $this->return_date = $return_date;
-        $this->covid_vaccination_flag = $covid_vaccination_flag;
-        $this->covid_vaccine_name = $covid_vaccine_name;
-        $this->covid_first_vaccination_date = $covid_first_vaccination_date;
-        $this->covid_second_vaccination_date = $covid_second_vaccination_date;
-        $this->flu_vaccination_flag = $flu_vaccination_flag;
-        $this->flu_vaccine_name = $flu_vaccine_name;
-        $this->flu_vaccination_date = $flu_vaccination_date;
-        $this->country_code = $country_code;
-        $this->international_passport_last_name = $international_passport_last_name;
-        $this->international_passport_name = $international_passport_name;
-        $this->international_passport_number = $international_passport_number;
-        $this->international_passport_issue_date = $international_passport_issue_date;
-        $this->international_passport_issued_by = $international_passport_issued_by;
     }
 
-    public function getExt_num()
+    /**
+     * @return string
+     */
+    public function getExtNum(): string
     {
-        return $this->ext_num;
+        return $this->extNum;
     }
 
-    public function withExt_num($ext_num)
+    /**
+     * @param string $extNum
+     */
+    public function setExtNum(string $extNum): void
     {
-        $new = clone $this;
-        $new->ext_num = $ext_num;
-
-        return $new;
+        $this->extNum = $extNum;
     }
 
-    public function getOrder_num()
+    /**
+     * @return string
+     */
+    public function getOrderNum(): string
     {
-        return $this->order_num;
+        return $this->orderNum;
     }
 
-    public function withOrder_num($order_num)
+    /**
+     * @param string $orderNum
+     */
+    public function setOrderNum(string $orderNum): void
     {
-        $new = clone $this;
-        $new->order_num = $order_num;
-
-        return $new;
+        $this->orderNum = $orderNum;
     }
 
-    public function getDoctor()
+    /**
+     * @return string
+     */
+    public function getDoctor(): string
     {
         return $this->doctor;
     }
 
-    public function withDoctor($doctor)
+    /**
+     * @param string $doctor
+     */
+    public function setDoctor(string $doctor): void
     {
-        $new = clone $this;
-        $new->doctor = $doctor;
-
-        return $new;
+        $this->doctor = $doctor;
     }
 
-    public function getContractor()
+    /**
+     * @return string
+     */
+    public function getContractor(): string
     {
         return $this->contractor;
     }
 
-    public function withContractor($contractor)
+    /**
+     * @param string $contractor
+     */
+    public function setContractor(string $contractor): void
     {
-        $new = clone $this;
-        $new->contractor = $contractor;
-
-        return $new;
+        $this->contractor = $contractor;
     }
 
-    public function getHash()
+    /**
+     * @return string
+     */
+    public function getHash(): string
     {
         return $this->hash;
     }
 
-    public function withHash($hash)
+    /**
+     * @param string $hash
+     */
+    public function setHash(string $hash): void
     {
-        $new = clone $this;
-        $new->hash = $hash;
-
-        return $new;
+        $this->hash = $hash;
     }
 
-    public function getComment()
+    /**
+     * @return string
+     */
+    public function getComment(): string
     {
         return $this->comment;
     }
 
-    public function withComment($comment)
+    /**
+     * @param string $comment
+     */
+    public function setComment(string $comment): void
     {
-        $new = clone $this;
-        $new->comment = $comment;
-
-        return $new;
+        $this->comment = $comment;
     }
 
-    public function getRegistered()
+    /**
+     * @return bool
+     */
+    public function isRegistered(): bool
     {
         return $this->registered;
     }
 
-    public function withRegistered($registered)
+    /**
+     * @param bool $registered
+     */
+    public function setRegistered(bool $registered): void
     {
-        $new = clone $this;
-        $new->registered = $registered;
-
-        return $new;
+        $this->registered = $registered;
     }
 
-    public function getRegistration_date()
+    /**
+     * @return string
+     */
+    public function getRegistrationDate(): string
     {
-        return $this->registration_date;
+        return date_format($this->registrationDate, 'Y-m-d');
     }
 
-    public function withRegistration_date($registration_date)
+    /**
+     * @param string $registrationDate
+     */
+    public function setRegistrationDate(string $registrationDate): void
     {
-        $new = clone $this;
-        $new->registration_date = $registration_date;
-
-        return $new;
+        $this->registrationDate = date_create($registrationDate);
     }
 
-    public function getOrder_status()
+    /**
+     * @return int
+     */
+    public function getOrderStatus(): int
     {
-        return $this->order_status;
+        return $this->orderStatus;
     }
 
-    public function withOrder_status($order_status)
+    /**
+     * @param int $orderStatus
+     */
+    public function setOrderStatus(int $orderStatus): void
     {
-        $new = clone $this;
-        $new->order_status = $order_status;
-
-        return $new;
+        $this->orderStatus = $orderStatus;
     }
 
-    public function getResult_status()
+    /**
+     * @return int
+     */
+    public function getResultStatus(): int
     {
-        return $this->result_status;
+        return $this->resultStatus;
     }
 
-    public function withResult_status($result_status)
+    /**
+     * @param int $resultStatus
+     */
+    public function setResultStatus(int $resultStatus): void
     {
-        $new = clone $this;
-        $new->result_status = $result_status;
-
-        return $new;
+        $this->resultStatus = $resultStatus;
     }
 
-    public function getPatient()
+    /**
+     * @return Patient
+     */
+    public function getPatient(): Patient
     {
         return $this->patient;
     }
 
-    public function withPatient($patient)
+    /**
+     * @param Patient $patient
+     */
+    public function setPatient(Patient $patient): void
     {
-        $new = clone $this;
-        $new->patient = $patient;
-
-        return $new;
+        $this->patient = $patient;
     }
 
-    public function getRepresentative()
+    /**
+     * @return Representative
+     */
+    public function getRepresentative(): Representative
     {
         return $this->representative;
     }
 
-    public function withRepresentative($representative)
+    /**
+     * @param Representative $representative
+     */
+    public function setRepresentative(Representative $representative): void
     {
-        $new = clone $this;
-        $new->representative = $representative;
-
-        return $new;
+        $this->representative = $representative;
     }
 
-    public function getInforming()
+    /**
+     * @return Informing
+     */
+    public function getInforming(): Informing
     {
         return $this->informing;
     }
 
-    public function withInforming($informing)
+    /**
+     * @param Informing $informing
+     */
+    public function setInforming(Informing $informing): void
     {
-        $new = clone $this;
-        $new->informing = $informing;
-
-        return $new;
+        $this->informing = $informing;
     }
 
-    public function getAdditional_information()
+    /**
+     * @return AdditionalInformation
+     */
+    public function getAdditionalInformation(): AdditionalInformation
     {
-        return $this->additional_information;
+        return $this->additionalInformation;
     }
 
-    public function withAdditional_information($additional_information)
+    /**
+     * @param AdditionalInformation $additionalInformation
+     */
+    public function setAdditionalInformation(AdditionalInformation $additionalInformation): void
     {
-        $new = clone $this;
-        $new->additional_information = $additional_information;
-
-        return $new;
+        $this->additionalInformation = $additionalInformation;
     }
 
-    public function getServices()
+    /**
+     * @return array
+     */
+    public function getServices(): array
     {
         return $this->services;
     }
 
-    public function withServices($services)
+    /**
+     * @param Service|stdClass $service
+     */
+    public function addService(Service|stdClass $service): void
     {
-        $new = clone $this;
-        $new->services = $services;
-
-        return $new;
+        $this->services[] = $service;
     }
 
-    public function getOrder_samples()
+    /**
+     * @return OrderSample
+     */
+    public function getOrderSamples(): OrderSample
     {
-        return $this->order_samples;
+        return $this->orderSamples;
     }
 
-    public function withOrder_samples($order_samples)
+    /**
+     * @param OrderSample $orderSamples
+     */
+    public function setOrderSamples(OrderSample $orderSamples): void
     {
-        $new = clone $this;
-        $new->order_samples = $order_samples;
-
-        return $new;
+        $this->orderSamples = $orderSamples;
     }
 
-    public function getServices_supplementals()
+    /**
+     * @return array
+     */
+    public function getServicesSupplementals(): array
     {
-        return $this->services_supplementals;
+        return $this->servicesSupplementals;
     }
 
-    public function withServices_supplementals($services_supplementals)
+    /**
+     * @param ServicesSupplementals $servicesSupplementals
+     */
+    public function setServicesSupplementals(ServicesSupplementals $servicesSupplementals): void
     {
-        $new = clone $this;
-        $new->services_supplementals = $services_supplementals;
-
-        return $new;
+        $this->servicesSupplementals = array($servicesSupplementals);
     }
 
-    public function getUser_id()
+    /**
+     * @return int
+     */
+    public function getUserId(): int
     {
-        return $this->user_id;
+        return $this->userId;
     }
 
-    public function withUser_id($user_id)
+    /**
+     * @param int $userId
+     */
+    public function setUserId(int $userId): void
     {
-        $new = clone $this;
-        $new->user_id = $user_id;
-
-        return $new;
+        $this->userId = $userId;
     }
 
-    public function getRead_only()
+    /**
+     * @return bool
+     */
+    public function isReadOnly(): bool
     {
-        return $this->read_only;
+        return $this->readOnly;
     }
 
-    public function withRead_only($read_only)
+    /**
+     * @param bool $readOnly
+     */
+    public function setReadOnly(bool $readOnly): void
     {
-        $new = clone $this;
-        $new->read_only = $read_only;
-
-        return $new;
+        $this->readOnly = $readOnly;
     }
 
-    public function getGuarantee_letter()
+    /**
+     * @return bool
+     */
+    public function isGuaranteeLetter(): bool
     {
-        return $this->guarantee_letter;
+        return $this->guaranteeLetter;
     }
 
-    public function withGuarantee_letter($guarantee_letter)
+    /**
+     * @param bool $guaranteeLetter
+     */
+    public function setGuaranteeLetter(bool $guaranteeLetter): void
     {
-        $new = clone $this;
-        $new->guarantee_letter = $guarantee_letter;
-
-        return $new;
+        $this->guaranteeLetter = $guaranteeLetter;
     }
 
-    public function getFlag_travel_30_days()
+    /**
+     * @return bool
+     */
+    public function isFlagTravel30Days(): bool
     {
-        return $this->flag_travel_30_days;
+        return $this->flagTravel30Days;
     }
 
-    public function withFlag_travel_30_days($flag_travel_30_days)
+    /**
+     * @param bool $flagTravel30Days
+     */
+    public function setFlagTravel30Days(bool $flagTravel30Days): void
     {
-        $new = clone $this;
-        $new->flag_travel_30_days = $flag_travel_30_days;
-
-        return $new;
+        $this->flagTravel30Days = $flagTravel30Days;
     }
 
-    public function getTravel_country()
+    /**
+     * @return string
+     */
+    public function getTravelCountry(): string
     {
-        return $this->travel_country;
+        return $this->travelCountry;
     }
 
-    public function withTravel_country($travel_country)
+    /**
+     * @param string $travelCountry
+     */
+    public function setTravelCountry(string $travelCountry): void
     {
-        $new = clone $this;
-        $new->travel_country = $travel_country;
-
-        return $new;
+        $this->travelCountry = $travelCountry;
     }
 
-    public function getReturn_date()
+    /**
+     * @return string
+     */
+    public function getReturnDate(): string
     {
-        return $this->return_date;
+        return date_format($this->returnDate, 'Y-m-d');
     }
 
-    public function withReturn_date($return_date)
+    /**
+     * @param string $returnDate
+     */
+    public function setReturnDate(string $returnDate): void
     {
-        $new = clone $this;
-        $new->return_date = $return_date;
-
-        return $new;
+        $this->returnDate = date_create($returnDate);
     }
 
-    public function getCovid_vaccination_flag()
+    /**
+     * @return bool
+     */
+    public function isCovidVaccinationFlag(): bool
     {
-        return $this->covid_vaccination_flag;
+        return $this->covidVaccinationFlag;
     }
 
-    public function withCovid_vaccination_flag($covid_vaccination_flag)
+    /**
+     * @param bool $covidVaccinationFlag
+     */
+    public function setCovidVaccinationFlag(bool $covidVaccinationFlag): void
     {
-        $new = clone $this;
-        $new->covid_vaccination_flag = $covid_vaccination_flag;
-
-        return $new;
+        $this->covidVaccinationFlag = $covidVaccinationFlag;
     }
 
-    public function getCovid_vaccine_name()
+    /**
+     * @return string
+     */
+    public function getCovidVaccineName(): string
     {
-        return $this->covid_vaccine_name;
+        return $this->covidVaccineName;
     }
 
-    public function withCovid_vaccine_name($covid_vaccine_name)
+    /**
+     * @param string $covidVaccineName
+     */
+    public function setCovidVaccineName(string $covidVaccineName): void
     {
-        $new = clone $this;
-        $new->covid_vaccine_name = $covid_vaccine_name;
-
-        return $new;
+        $this->covidVaccineName = $covidVaccineName;
     }
 
-    public function getCovid_first_vaccination_date()
+    /**
+     * @return string
+     */
+    public function getCovidFirstVaccinationDate(): string
     {
-        return $this->covid_first_vaccination_date;
+        return date_format($this->covidFirstVaccinationDate, 'Y-m-d');
     }
 
-    public function withCovid_first_vaccination_date($covid_first_vaccination_date)
+    /**
+     * @param string $covidFirstVaccinationDate
+     */
+    public function setCovidFirstVaccinationDate(string $covidFirstVaccinationDate): void
     {
-        $new = clone $this;
-        $new->covid_first_vaccination_date = $covid_first_vaccination_date;
-
-        return $new;
+        $this->covidFirstVaccinationDate = date_create($covidFirstVaccinationDate);
     }
 
-    public function getCovid_second_vaccination_date()
+    /**
+     * @return string
+     */
+    public function getCovidSecondVaccinationDate(): string
     {
-        return $this->covid_second_vaccination_date;
+        return date_format($this->covidSecondVaccinationDate, 'Y-m-d');
     }
 
-    public function withCovid_second_vaccination_date($covid_second_vaccination_date)
+    /**
+     * @param string $covidSecondVaccinationDate
+     */
+    public function setCovidSecondVaccinationDate(string $covidSecondVaccinationDate): void
     {
-        $new = clone $this;
-        $new->covid_second_vaccination_date = $covid_second_vaccination_date;
-
-        return $new;
+        $this->covidSecondVaccinationDate = date_create($covidSecondVaccinationDate);
     }
 
-    public function getFlu_vaccination_flag()
+    /**
+     * @return bool
+     */
+    public function isFluVaccinationFlag(): bool
     {
-        return $this->flu_vaccination_flag;
+        return $this->fluVaccinationFlag;
     }
 
-    public function withFlu_vaccination_flag($flu_vaccination_flag)
+    /**
+     * @param bool $fluVaccinationFlag
+     */
+    public function setFluVaccinationFlag(bool $fluVaccinationFlag): void
     {
-        $new = clone $this;
-        $new->flu_vaccination_flag = $flu_vaccination_flag;
-
-        return $new;
+        $this->fluVaccinationFlag = $fluVaccinationFlag;
     }
 
-    public function getFlu_vaccine_name()
+    /**
+     * @return string
+     */
+    public function getFluVaccineName(): string
     {
-        return $this->flu_vaccine_name;
+        return $this->fluVaccineName;
     }
 
-    public function withFlu_vaccine_name($flu_vaccine_name)
+    /**
+     * @param string $fluVaccineName
+     */
+    public function setFluVaccineName(string $fluVaccineName): void
     {
-        $new = clone $this;
-        $new->flu_vaccine_name = $flu_vaccine_name;
-
-        return $new;
+        $this->fluVaccineName = $fluVaccineName;
     }
 
-    public function getFlu_vaccination_date()
+    /**
+     * @return DateTimeInterface
+     */
+    public function getFluVaccinationDate(): DateTimeInterface
     {
-        return $this->flu_vaccination_date;
+        return $this->fluVaccinationDate;
     }
 
-    public function withFlu_vaccination_date($flu_vaccination_date)
+    /**
+     * @param DateTimeInterface $fluVaccinationDate
+     */
+    public function setFluVaccinationDate(DateTimeInterface $fluVaccinationDate): void
     {
-        $new = clone $this;
-        $new->flu_vaccination_date = $flu_vaccination_date;
-
-        return $new;
+        $this->fluVaccinationDate = $fluVaccinationDate;
     }
 
-    public function getCountry_code()
+    /**
+     * @return string
+     */
+    public function getCountryCode(): string
     {
-        return $this->country_code;
+        return $this->countryCode;
     }
 
-    public function withCountry_code($country_code)
+    /**
+     * @param string $countryCode
+     */
+    public function setCountryCode(string $countryCode): void
     {
-        $new = clone $this;
-        $new->country_code = $country_code;
-
-        return $new;
+        $this->countryCode = $countryCode;
     }
 
-    public function getInternational_passport_last_name()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportLastName(): string
     {
-        return $this->international_passport_last_name;
+        return $this->internationalPassportLastName;
     }
 
-    public function withInternational_passport_last_name($international_passport_last_name)
+    /**
+     * @param string $internationalPassportLastName
+     */
+    public function setInternationalPassportLastName(string $internationalPassportLastName): void
     {
-        $new = clone $this;
-        $new->international_passport_last_name = $international_passport_last_name;
-
-        return $new;
+        $this->internationalPassportLastName = $internationalPassportLastName;
     }
 
-    public function getInternational_passport_name()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportName(): string
     {
-        return $this->international_passport_name;
+        return $this->internationalPassportName;
     }
 
-    public function withInternational_passport_name($international_passport_name)
+    /**
+     * @param string $internationalPassportName
+     */
+    public function setInternationalPassportName(string $internationalPassportName): void
     {
-        $new = clone $this;
-        $new->international_passport_name = $international_passport_name;
-
-        return $new;
+        $this->internationalPassportName = $internationalPassportName;
     }
 
-    public function getInternational_passport_number()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportNumber(): string
     {
-        return $this->international_passport_number;
+        return $this->internationalPassportNumber;
     }
 
-    public function withInternational_passport_number($international_passport_number)
+    /**
+     * @param string $internationalPassportNumber
+     */
+    public function setInternationalPassportNumber(string $internationalPassportNumber): void
     {
-        $new = clone $this;
-        $new->international_passport_number = $international_passport_number;
-
-        return $new;
+        $this->internationalPassportNumber = $internationalPassportNumber;
     }
 
-    public function getInternational_passport_issue_date()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportIssueDate(): string
     {
-        return $this->international_passport_issue_date;
+        return date_format($this->internationalPassportIssueDate, 'Y-m-d');
     }
 
-    public function withInternational_passport_issue_date($international_passport_issue_date)
+    /**
+     * @param string $internationalPassportIssueDate
+     */
+    public function setInternationalPassportIssueDate(string $internationalPassportIssueDate): void
     {
-        $new = clone $this;
-        $new->international_passport_issue_date = $international_passport_issue_date;
-
-        return $new;
+        $this->internationalPassportIssueDate = date_create($internationalPassportIssueDate);
     }
 
-    public function getInternational_passport_issued_by()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportIssuedBy(): string
     {
-        return $this->international_passport_issued_by;
+        return $this->internationalPassportIssuedBy;
     }
 
-    public function withInternational_passport_issued_by($international_passport_issued_by)
+    /**
+     * @param string $internationalPassportIssuedBy
+     */
+    public function setInternationalPassportIssuedBy(string $internationalPassportIssuedBy): void
     {
-        $new = clone $this;
-        $new->international_passport_issued_by = $international_passport_issued_by;
+        $this->internationalPassportIssuedBy = $internationalPassportIssuedBy;
+    }
 
-        return $new;
+    public function toArray(): array
+    {
+        $newArr = [];
+        $array = get_object_vars($this);
+        foreach ($array as $key => $value)
+        {
+            if ($value instanceof Patient){
+                $newArr[strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key))] = $value->toArray();
+            } else {
+                $newArr[strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key))] = $value;
+            }
+        }
+        return $newArr;
     }
 }
-

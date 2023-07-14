@@ -19,10 +19,12 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-    App\Service\Gemotest\GemotestClientClient:
+    App\Service\Gemotest\GemotestClient:
         # the first argument is the class and the second argument is the static method
-        factory: [ 'App\Service\Gemotest\GemotestClientClientFactory', 'factory' ]
+        factory: [ 'App\Service\Gemotest\GemotestClientFactory', 'factory' ]
         arguments:
             $wsdl: 'https://api.gemotest.ru/odoctor.wsdl'
+            $login: '10003-gem'
+            $password: 'Sp$8A_L}I'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

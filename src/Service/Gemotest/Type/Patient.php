@@ -2,222 +2,270 @@
 
 namespace App\Service\Gemotest\Type;
 
+use DateTimeInterface;
+
 class Patient
 {
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $surname;
+    private string $surname;
 
     /**
      * @var string
      */
-    private $firstname;
+    private string $firstname;
 
     /**
      * @var string
      */
-    private $middlename;
+    private string $middlename;
 
     /**
-     * @var \DateTimeInterface
+     * @var string
      */
-    private \DateTimeInterface $birthdate;
+    private string $birthdate;
 
     /**
      * @var int
      */
-    private $gender;
+    private int $gender;
 
     /**
      * @var bool
      */
-    private $anonymous;
+    private bool $anonymous;
 
     /**
      * @var string
      */
-    private $international_passport_last_name;
+    private string $internationalPassportLastName;
 
     /**
      * @var string
      */
-    private $international_passport_name;
+    private string $internationalPassportName;
 
     /**
      * @var string
      */
-    private $international_passport_number;
-
-    /**
-     * @var \DateTimeInterface
-     */
-    private $international_passport_issue_date;
+    private string $international_passport_number;
 
     /**
      * @var string
      */
-    private $international_passport_issued_by;
+    private string $internationalPassportIssueDate;
 
-    public function getId()
+    /**
+     * @var string
+     */
+    private string $internationalPassportIssuedBy;
+
+    /**
+     * @return string
+     */
+    public function getId(): string
     {
         return $this->id;
     }
 
-    public function withId($id)
+    /**
+     * @param string $id
+     */
+    public function setId(string $id): void
     {
-        $new = clone $this;
-        $new->id = $id;
-
-        return $new;
+        $this->id = $id;
     }
 
-    public function getSurname()
+    /**
+     * @return string
+     */
+    public function getSurname(): string
     {
         return $this->surname;
     }
 
-    public function withSurname($surname)
+    /**
+     * @param string $surname
+     */
+    public function setSurname(string $surname): void
     {
-        $new = clone $this;
-        $new->surname = $surname;
-
-        return $new;
+        $this->surname = $surname;
     }
 
-    public function getFirstname()
+    /**
+     * @return string
+     */
+    public function getFirstname(): string
     {
         return $this->firstname;
     }
 
-    public function withFirstname($firstname)
+    /**
+     * @param string $firstname
+     */
+    public function setFirstname(string $firstname): void
     {
-        $new = clone $this;
-        $new->firstname = $firstname;
-
-        return $new;
+        $this->firstname = $firstname;
     }
 
-    public function getMiddlename()
+    /**
+     * @return string
+     */
+    public function getMiddlename(): string
     {
         return $this->middlename;
     }
 
-    public function withMiddlename($middlename)
+    /**
+     * @param string $middlename
+     */
+    public function setMiddlename(string $middlename): void
     {
-        $new = clone $this;
-        $new->middlename = $middlename;
-
-        return $new;
+        $this->middlename = $middlename;
     }
 
-    public function getBirthdate()
+    /**
+     * @return string
+     */
+    public function getBirthdate(): string
     {
         return $this->birthdate;
     }
 
-    public function withBirthdate($birthdate)
+    /**
+     * @param string $birthdate
+     */
+    public function setBirthdate(string $birthdate): void
     {
-        $new = clone $this;
-        $new->birthdate = $birthdate;
-
-        return $new;
+        $this->birthdate = date_format(date_create($birthdate), 'Y-m-d');
     }
 
-    public function getGender()
+    /**
+     * @return int
+     */
+    public function getGender(): int
     {
         return $this->gender;
     }
 
-    public function withGender($gender)
+    /**
+     * @param int $gender
+     */
+    public function setGender(int $gender): void
     {
-        $new = clone $this;
-        $new->gender = $gender;
-
-        return $new;
+        $this->gender = $gender;
     }
 
-    public function getAnonymous()
+    /**
+     * @return bool
+     */
+    public function isAnonymous(): bool
     {
         return $this->anonymous;
     }
 
-    public function withAnonymous($anonymous)
+    /**
+     * @param bool $anonymous
+     */
+    public function setAnonymous(bool $anonymous): void
     {
-        $new = clone $this;
-        $new->anonymous = $anonymous;
-
-        return $new;
+        $this->anonymous = $anonymous;
     }
 
-    public function getInternational_passport_last_name()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportLastName(): string
     {
-        return $this->international_passport_last_name;
+        return $this->internationalPassportLastName;
     }
 
-    public function withInternational_passport_last_name($international_passport_last_name)
+    /**
+     * @param string $internationalPassportLastName
+     */
+    public function setInternationalPassportLastName(string $internationalPassportLastName): void
     {
-        $new = clone $this;
-        $new->international_passport_last_name = $international_passport_last_name;
-
-        return $new;
+        $this->internationalPassportLastName = $internationalPassportLastName;
     }
 
-    public function getInternational_passport_name()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportName(): string
     {
-        return $this->international_passport_name;
+        return $this->internationalPassportName;
     }
 
-    public function withInternational_passport_name($international_passport_name)
+    /**
+     * @param string $internationalPassportName
+     */
+    public function setInternationalPassportName(string $internationalPassportName): void
     {
-        $new = clone $this;
-        $new->international_passport_name = $international_passport_name;
-
-        return $new;
+        $this->internationalPassportName = $internationalPassportName;
     }
 
-    public function getInternational_passport_number()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportNumber(): string
     {
         return $this->international_passport_number;
     }
 
-    public function withInternational_passport_number($international_passport_number)
+    /**
+     * @param string $international_passport_number
+     */
+    public function setInternationalPassportNumber(string $international_passport_number): void
     {
-        $new = clone $this;
-        $new->international_passport_number = $international_passport_number;
-
-        return $new;
+        $this->international_passport_number = $international_passport_number;
     }
 
-    public function getInternational_passport_issue_date()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportIssueDate(): string
     {
-        return $this->international_passport_issue_date;
+        return $this->internationalPassportIssueDate;
     }
 
-    public function withInternational_passport_issue_date($international_passport_issue_date)
+    /**
+     * @param string $internationalPassportIssueDate
+     */
+    public function setInternationalPassportIssueDate(string $internationalPassportIssueDate): void
     {
-        $new = clone $this;
-        $new->international_passport_issue_date = $international_passport_issue_date;
-
-        return $new;
+        $this->internationalPassportIssueDate = date_format(date_create($internationalPassportIssueDate), 'Y-m-d');
     }
 
-    public function getInternational_passport_issued_by()
+    /**
+     * @return string
+     */
+    public function getInternationalPassportIssuedBy(): string
     {
-        return $this->international_passport_issued_by;
+        return $this->internationalPassportIssuedBy;
     }
 
-    public function withInternational_passport_issued_by($international_passport_issued_by)
+    /**
+     * @param string $internationalPassportIssuedBy
+     */
+    public function setInternationalPassportIssuedBy(string $internationalPassportIssuedBy): void
     {
-        $new = clone $this;
-        $new->international_passport_issued_by = $international_passport_issued_by;
+        $this->internationalPassportIssuedBy = $internationalPassportIssuedBy;
+    }
+    public function toArray(): array
+    {
+        $newArr = [];
+        $array = get_object_vars($this);
 
-        return $new;
+        foreach ($array as $key => $value)
+        {
+            $newArr[strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key))] = $value;
+        }
+        return $newArr;
     }
 }
-

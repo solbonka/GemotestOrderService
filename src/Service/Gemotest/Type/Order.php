@@ -64,29 +64,10 @@ class Order implements RequestInterface
     private Patient $patient;
 
     /**
-     * @var Representative
-     */
-    private Representative $representative;
-
-    /**
-     * @var Informing
-     */
-    private Informing $informing;
-
-    /**
-     * @var AdditionalInformation
-     */
-    private AdditionalInformation $additionalInformation;
-
-    /**
      * @var array
      */
     private array $services;
 
-    /**
-     * @var OrderSample
-     */
-    private OrderSample $orderSamples;
 
     /**
      * @var array
@@ -188,13 +169,11 @@ class Order implements RequestInterface
      */
     private string $internationalPassportIssuedBy;
 
-    public function __construct(string $extNum, string $orderNum, string $contractor, string $hash
-    )
+    public function __construct(string $extNum, string $orderNum, string $contractor)
     {
         $this->extNum = $extNum;
         $this->orderNum = $orderNum;
         $this->contractor = $contractor;
-        $this->hash = $hash;
     }
 
     /**

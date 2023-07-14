@@ -10,7 +10,7 @@ class GemotestClientFactory
     /**
      * @throws SoapFault
      */
-    public static function factory(string $wsdl, string $login, string $password): GemotestClient
+    public static function factory(string $wsdl, string $login, string $password, string $salt): GemotestClient
     {
         $options    = [
             'soap_version' => SOAP_1_1,
@@ -25,6 +25,6 @@ class GemotestClientFactory
 
         $client = new SoapClient($wsdl, $options);
 
-        return new GemotestClient($client);
+        return new GemotestClient($client, $salt);
     }
 }

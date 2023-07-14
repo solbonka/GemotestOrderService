@@ -26,5 +26,6 @@ services:
             $wsdl: 'https://api.gemotest.ru/odoctor.wsdl'
             $login: '10003-gem'
             $password: 'Sp$8A_L}I'
+            $salt: 'b4f6d7d2fe94123c03c86412a0b649494017463f'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

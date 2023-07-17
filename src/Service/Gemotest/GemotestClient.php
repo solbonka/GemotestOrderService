@@ -16,7 +16,7 @@ class GemotestClient
         $this->salt = $salt;
     }
 
-    public function createOrder(Order $order)
+    public function createOrder(Order $order): Order
     {
         $hash = sha1("{$order->getExtNum()}{$order->getOrderNum()}{$order->getContractor()}{$order->getPatient()->getSurname()}{$order->getPatient()->getBirthdate()}$this->salt");
         $order->setHash($hash);
@@ -28,7 +28,7 @@ class GemotestClient
         return $order;
     }
 
-    public function cancelOrder(Order $order)
+    public function cancelOrder(Order $order): Order
     {
         $hash = sha1("{$order->getExtNum()}{$order->getOrderNum()}{$order->getContractor()}$this->salt");
         $order->setHash($hash);
